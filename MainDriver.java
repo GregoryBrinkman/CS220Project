@@ -1,4 +1,4 @@
-import java.Scanner.*;
+import java.util.*;
 
 public class MainDriver
 {

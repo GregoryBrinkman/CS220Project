@@ -1,4 +1,4 @@
-Interface StackInterface<T>{
+interface StackInterface<T>{
 	public void push(T newEntry);
 	public T peek();
 	public T pop();

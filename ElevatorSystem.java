@@ -24,9 +24,9 @@ class ElevatorSystem
 
 		for(int i = 0; i < elevators.length; i++)
 		{
-			if(Math.abs(elevators[i].getFloor() - f < min)
+			if(Math.abs(elevators[i].getFloor() - from) < min)
 			{
-				min = Math.abs(elevators[i].getFloor() - f);
+				min = Math.abs(elevators[i].getFloor() - from);
 				index = i;
 			}
 		}
@@ -44,25 +44,21 @@ class ElevatorSystem
 		for(int i = numFloors; i > 0; i--)
 			for(int numElevator = 0; numElevator < elevators.length; numElevator++)
 			{
-				switch (numElevator) {
-					case 0:
-						if (elevators[numElevator].floorAt(i) != 0)
-							System.out.print("|\t" + elevators[numElevator].floorAt(i));
-						else
-							System.out.print("|\t");
-						break;
-					case elevators.length-1:
-						if (elevators[numElevator].floorAt(i) != 0)
-							System.out.print("\t|\t" + elevators[numElevator].floorAt(i) + "\t|");
-						else
-							System.out.print("\t|\t\t|");
-						break;
-					default:
-						if (elevators[numElevator].floorAt(i) != 0)
-							System.out.print("\t|\t" + elevators[numElevator].floorAt(i));
-						else
-							System.out.print("\t|\t");
-				}
+				if(numElevator == 0)	
+					if (elevators[numElevator].floorAt(i) != 0)
+						System.out.print("|\t" + elevators[numElevator].floorAt(i));
+					else
+						System.out.print("|\t");
+				else if(numElevator == elevators.length-1)
+					if (elevators[numElevator].floorAt(i) != 0)
+						System.out.println("\t|\t" + elevators[numElevator].floorAt(i) + "\t|");
+					else
+						System.out.println("\t|\t\t|");
+				else
+					if (elevators[numElevator].floorAt(i) != 0)
+						System.out.print("\t|\t" + elevators[numElevator].floorAt(i));
+					else
+						System.out.print("\t|\t");
 			}
 	}
 
