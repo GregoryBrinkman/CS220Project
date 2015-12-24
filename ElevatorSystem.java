@@ -1,19 +1,26 @@
 class ElevatorSystem
 {
-	static final int TOTALFLOORS = 17;
+	static final int DEFAULTFLOORS = 17;
 	private Elevator[] elevators;
+	private int numFloors;
 
-	public ElevatorSystem(int e)
+	public ElevatorSystem(int e, int f)
 	{
 		elevators = new Elevator[e];
 		for(int i = 0; i < e; i++)
 			elevators[i] = new Elevator();
+		numFloors = f;
 	}
+	
+	public ElevatorSystem(int e)
+	{
+		this(e, DEFAULTFLOORS);
+	}	
 
 	public void floorCall(int from, int...to)
 	{
 		int index = 0;
-		int min = TOTALFLOORS;
+		int min = numFloors;
 
 		for(int i = 0; i < elevators.length; i++)
 		{
@@ -34,7 +41,7 @@ class ElevatorSystem
 
 	public void printElevators()
 	{
-		for(int i = TOTALFLOORS; i > 0; i++)
+		for(int i = numFloors; i > 0; i--)
 			for(int numElevator = 0; numElevator < elevators.length; numElevator++)
 			{
 				switch (numElevator) {
