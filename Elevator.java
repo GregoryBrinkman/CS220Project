@@ -1,6 +1,7 @@
 class Elevator
 {
 	private LinkedStack<Integer> currentFloor;
+
 	public Elevator()
 	{
 		currentFloor = new LinkedStack<Integer>();
