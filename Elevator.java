@@ -10,16 +10,14 @@ class Elevator
 
 	public void goUp()
 	{
-		//make the elevator wait
-	
 		currentFloor.push(currentFloor.peek()+1);
+		waitOne();
 	}
 
 	public void goDown()
 	{
-		//make the elevator wait
-
 		currentFloor.pop();
+		waitOne();
 	}
 
 	public int getFloor()
@@ -44,4 +42,13 @@ class Elevator
 			floor = 0;
 		return floor;
 	}
+
+	private void waitOne()
+	{
+		long t1, t2;
+		t1 = System.currentTimeMillis();
+		do{t2=System.currentTimeMillis();} while (t2-t1 < 1000);
+	}
+
 }
+
