@@ -34,7 +34,7 @@ class ElevatorSystem
 	elevators[index].goToFloor(from);
 	for (int floor : to)
 	{	
-		System.out.println("Elevator " + index + " is going to floor " + floor);
+		System.out.println("Elevator " + (1+index) + " is going to floor " + floor);
 		elevators[index].goToFloor(floor);
 	}
 	}
