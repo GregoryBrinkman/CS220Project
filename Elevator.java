@@ -1,6 +1,6 @@
 class Elevator
 {
-	private LinkedStack<Integer> currentFloor; //allocate memory for LinkedStack, currentFloor
+	private LinkedStack<Integer> currentFloor; 
 
 	public Elevator() //default constructor
 	{
@@ -29,26 +29,27 @@ class Elevator
 	{
 		while(getFloor() != f) //compares currentFloor to the desired floor
 		{
-			if(getFloor() > f) //if the currentfloor is greater 
-				goDown();
+			if(getFloor() > f) 
+				goDown(); 
 			else
-				goUp();
+				goUp(); 
+			System.out.println(getFloor());
 		}//end while
 	}//end goToFloor
 
-	public int floorAt(int floor)
+	public int floorAt(int floor) //used for the printElevators method in ElevatorSystem
 	{
 		if (floor != getFloor())
 			floor = 0;
 		return floor;
-	}
+	}//end floorAt
 
 	private void waitOne()
 	{
-		long t1, t2;
+		long t1, t2; //variable initiation
 		t1 = System.currentTimeMillis();
-		do{t2=System.currentTimeMillis();} while (t2-t1 < 1000);
-	}
+		do{ t2=System.currentTimeMillis(); } while (t2-t1 < 1000); //waits a second
+	}//end waitOne
 
 }
 

@@ -1,43 +1,55 @@
 class ElevatorSystem
 {
-	static final int DEFAULTFLOORS = 17;
+	static final int DEFAULTFLOORS = 17; //default number of floors for constructor
 	private Elevator[] elevators;
 	private int numFloors;
 
 	public ElevatorSystem(int e, int f)
 	{
-		elevators = new Elevator[e];
+		elevators = new Elevator[e]; //instantiates array of elevators
 		for(int i = 0; i < e; i++)
-			elevators[i] = new Elevator();
-		numFloors = f;
-	}
+			elevators[i] = new Elevator(); //instantiates elevators in array
+		numFloors = f; //specifies total number of floors
+	}//end constructor
 	
 	public ElevatorSystem(int e)
 	{
-		this(e, DEFAULTFLOORS);
-	}	
+		this(e, DEFAULTFLOORS); //calls constuctor with DEFAULTFLOORS for numFloor
+	}//end constructor	
 
 	public void floorCall(int from, int...to)
+	{
+		int index = getClosestElevator(from);
+		status();
+		elevators[index].goToFloor(from);
+		for (int floor : to)
+		{	
+			/*
+			* Order & sort these into two groups: higher and lower
+			* execute the higher group and call another elevator to 
+			* go to the floor, from, and travel to the floors below
+			*/
+
+			System.out.println("Elevator " + (1+index) + " is going to floor " + floor);
+			elevators[index].goToFloor(floor);
+		}
+	}
+
+	private int getClosestElevator(int floor)
 	{
 		int index = 0;
 		int min = numFloors;
 
 		for(int i = 0; i < elevators.length; i++)
 		{
-			if(Math.abs(elevators[i].getFloor() - from) < min)
+			if(Math.abs(elevators[i].getFloor() - floor) < min)
 			{
-				min = Math.abs(elevators[i].getFloor() - from);
+				min = Math.abs(elevators[i].getFloor() - floor);
 				index = i;
-			}
-		}
-	status();
-	elevators[index].goToFloor(from);
-	for (int floor : to)
-	{	
-		System.out.println("Elevator " + (1+index) + " is going to floor " + floor);
-		elevators[index].goToFloor(floor);
-	}
-	}
+			}//end if
+		}//end for
+		return index;
+	}//end getClosestElevator
 
 	public void printElevators()
 	{
