@@ -33,7 +33,7 @@ class Elevator
 				goDown(); 
 			else
 				goUp(); 
-			System.out.println(getFloor());
+			System.out.println("The Elevator is on " + getFloor());
 		}//end while
 	}//end goToFloor
 
