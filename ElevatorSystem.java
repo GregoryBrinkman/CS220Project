@@ -37,11 +37,41 @@ class ElevatorSystem
 			//compare array to 'from', check every floor on way
 			//remove int from array once floor is visited
 		{
-			if (f < from)
+			if (f <= from)
+				continue;
+			else
+			{
+				array[i++] = f;
+			System.out.println(f);
+			}
+		}
+		int j = i;
+		//then sort array
+		//then send elevator to those floors
+		for(int a : array)
+		{
+			if(a == 0) {break;}
+			elevators[index].goToFloor(a);
+			
+		}
+		index = getClosestElevator(from, index);	
+		printElevators();
+		elevators[index].goToFloor(from);
+		printElevators();
+		//then iterate through int f : to again
+		// except with lower, then order those decending
+		//send elevator
+		for(int f : to)
+		{
+			if (f >= from)
 				continue;
 			else
 				array[i++] = f;
 		}
+		while(j < i)
+			elevators[index].goToFloor(array[j++]);
+		printElevators();
+	}
 
 	private int getClosestElevator(int floor, int exclude)
 	{
