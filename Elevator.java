@@ -1,4 +1,4 @@
-class Elevator
+public class Elevator
 {
 	private LinkedStack<Integer> currentFloor;
 
@@ -29,17 +29,10 @@ class Elevator
 			if(getFloor() > f)
 				goDown();
 			else
-<<<<<<< HEAD
 				goUp();
 		}
 		//wait five
 	}
-=======
-				goUp(); 
-			System.out.println("The Elevator is on " + getFloor());
-		}//end while
-	}//end goToFloor
->>>>>>> e92c820def734752aec0e25bc00ad52db1f50b2c
 
 	public void floorCall(int [] floorsCalled)
 	{
@@ -70,7 +63,7 @@ class Elevator
 	{
 		int temp = 0;
 		int x = 0;
-		int pivotIndex;
+		int pivotIndex = 0;
 		int j = 0;
 
 		for(int i = 0; i < array.length-1; i++)
@@ -99,11 +92,19 @@ class Elevator
 
 		if(upOrDown)
 		{
-			while(pivotIndex > 0)
+			x = 0;
+			while(x < pivotIndex)
 			{
 				//shift everything 
 				//use modulo
-				
+				temp = array[0];
+
+				for(int e = 0; e < array.length-1; e++)
+					array[e] = array[e+1];
+
+				array[array.length-1] = temp;
+
+				x++;
 			}
 		}
 	return array;
