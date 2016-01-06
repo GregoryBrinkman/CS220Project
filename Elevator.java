@@ -29,10 +29,17 @@ class Elevator
 			if(getFloor() > f)
 				goDown();
 			else
+<<<<<<< HEAD
 				goUp();
 		}
 		//wait five
 	}
+=======
+				goUp(); 
+			System.out.println("The Elevator is on " + getFloor());
+		}//end while
+	}//end goToFloor
+>>>>>>> e92c820def734752aec0e25bc00ad52db1f50b2c
 
 	public void floorCall(int [] floorsCalled)
 	{

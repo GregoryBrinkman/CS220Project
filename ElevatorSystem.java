@@ -20,29 +20,69 @@ class ElevatorSystem
 	public void floorCall(int from, int...to)
 	{
 		int index = getClosestElevator(from);
+		int i = 0;
+		int[] array = new int[numFloors];
 		status();
 		elevators[index].goToFloor(from);
-		for (int floor : to)
-		{	
+		printElevators();
 			/*
 			* Order & sort these into two groups: higher and lower
 			* execute the higher group and call another elevator to 
 			* go to the floor, from, and travel to the floors below
 			*/
-
-			System.out.println("Elevator " + (1+index) + " is going to floor " + floor);
-			elevators[index].goToFloor(floor);
+		for(int f : to)
+			//append to an array, unless lower
+			//if lower, call another elevator to go down
+			//
+			//compare array to 'from', check every floor on way
+			//remove int from array once floor is visited
+		{
+			if (f <= from)
+				continue;
+			else
+			{
+				array[i++] = f;
+			System.out.println(f);
+			}
 		}
+		int j = i;
+		//then sort array
+		//then send elevator to those floors
+		for(int a : array)
+		{
+			if(a == 0) {break;}
+			elevators[index].goToFloor(a);
+			
+		}
+		index = getClosestElevator(from, index);	
+		printElevators();
+		elevators[index].goToFloor(from);
+		printElevators();
+		//then iterate through int f : to again
+		// except with lower, then order those decending
+		//send elevator
+		for(int f : to)
+		{
+			if (f >= from)
+				continue;
+			else
+				array[i++] = f;
+		}
+		while(j < i)
+			elevators[index].goToFloor(array[j++]);
+		printElevators();
 	}
 
-	private int getClosestElevator(int floor)
+	private int getClosestElevator(int floor, int exclude)
 	{
 		int index = 0;
+		if(index == exclude)
+			index++;
 		int min = numFloors;
 
-		for(int i = 0; i < elevators.length; i++)
+		for(int i = index; i < elevators.length; i++)
 		{
-			if(Math.abs(elevators[i].getFloor() - floor) < min)
+			if((Math.abs(elevators[i].getFloor() - floor) < min) && i != exclude)
 			{
 				min = Math.abs(elevators[i].getFloor() - floor);
 				index = i;
@@ -50,6 +90,11 @@ class ElevatorSystem
 		}//end for
 		return index;
 	}//end getClosestElevator
+	
+	private int getClosestElevator(int floor)
+	{
+		return getClosestElevator(floor, -1);
+	}
 
 	public void printElevators()
 	{
