@@ -30,8 +30,10 @@ public class Elevator
 				goDown();
 			else
 				goUp();
+			System.out.print(getFloor() + " ");
 		}
 		//wait five
+		System.out.println("\nThe elevator has arrived at " + getFloor());
 	}
 
 	public void floorCall(int [] floorsCalled)
@@ -54,32 +56,45 @@ public class Elevator
 			int [] tmp = new int[counter];
 			int i = 0;
 			for(int x : goingTo)
-				tmp[i++] = x;
-			floorCall(sort(upOrDown, floorFrom, tmp));
+				if(x != floorFrom)
+					tmp[i++] = x;
+			
+			for(int ok : tmp)
+				System.out.print(" | " + ok);
+			System.out.println();
+			tmp = sort(upOrDown, floorFrom, tmp);
+
+			for(int ok : tmp)
+				System.out.print(" | " + ok);
+			System.out.println();
+			floorCall(tmp);
 		}
 	}
 
 	public int [] sort(boolean upOrDown, int pivot, int [] array)
 	{
-		int temp = 0;
-		int x = 0;
-		int pivotIndex = 0;
 		int j = 0;
+		int pivotIndex = 0;
+		int x = 0;
+		int temp = 0;
 
 		for(int i = 0; i < array.length-1; i++)
 		{
 			for(int q = i+1; q < array.length; q++)
+			{
 				if(array[i] > array[q])
 				{
 					temp = array[q];
 					array[q] = array[i];
 					array[i] = temp;
 				}
+			}
 		}
+
 
 		while(array[j] < pivot)
 			j++;
-		pivotIndex = j;
+		pivotIndex = j--;
 
 		while(j != x && x < j)
 		{
