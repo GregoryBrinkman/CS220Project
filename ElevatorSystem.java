@@ -17,59 +17,10 @@ class ElevatorSystem
 		this(e, DEFAULTFLOORS); //calls constuctor with DEFAULTFLOORS for numFloor
 	}//end constructor	
 
-	public void floorCall(int from, int...to)
+	public void floorCall(boolean upOrDown, int from, int...to)
 	{
 		int index = getClosestElevator(from);
-		int i = 0;
-		int[] array = new int[numFloors];
-		status();
-		elevators[index].goToFloor(from);
-		printElevators();
-			/*
-			* Order & sort these into two groups: higher and lower
-			* execute the higher group and call another elevator to 
-			* go to the floor, from, and travel to the floors below
-			*/
-		for(int f : to)
-			//append to an array, unless lower
-			//if lower, call another elevator to go down
-			//
-			//compare array to 'from', check every floor on way
-			//remove int from array once floor is visited
-		{
-			if (f <= from)
-				continue;
-			else
-			{
-				array[i++] = f;
-			System.out.println(f);
-			}
-		}
-		int j = i;
-		//then sort array
-		//then send elevator to those floors
-		for(int a : array)
-		{
-			if(a == 0) {break;}
-			elevators[index].goToFloor(a);
-			
-		}
-		index = getClosestElevator(from, index);	
-		printElevators();
-		elevators[index].goToFloor(from);
-		printElevators();
-		//then iterate through int f : to again
-		// except with lower, then order those decending
-		//send elevator
-		for(int f : to)
-		{
-			if (f >= from)
-				continue;
-			else
-				array[i++] = f;
-		}
-		while(j < i)
-			elevators[index].goToFloor(array[j++]);
+		elevators[index].floorCall(upOrDown, from, to);
 		printElevators();
 	}
 

@@ -30,7 +30,6 @@ public class Elevator
 				goDown();
 			else
 				goUp();
-			System.out.print(getFloor() + " ");
 		}
 		//wait five
 		System.out.println("\nThe elevator has arrived at " + getFloor());
@@ -47,7 +46,7 @@ public class Elevator
 		goToFloor(floorFrom);
 		int counter = 0;
 
-		for(int x : goingTo)
+		for(int x : goingTo) //determines how large the array should be
 			if(x != floorFrom)
 				counter++;
 
@@ -59,9 +58,6 @@ public class Elevator
 				if(x != floorFrom)
 					tmp[i++] = x;
 			
-			for(int ok : tmp)
-				System.out.print(" | " + ok);
-			System.out.println();
 			tmp = sort(upOrDown, floorFrom, tmp);
 
 			for(int ok : tmp)
@@ -78,6 +74,7 @@ public class Elevator
 		int x = 0;
 		int temp = 0;
 
+		//Sorts lowest to highest
 		for(int i = 0; i < array.length-1; i++)
 		{
 			for(int q = i+1; q < array.length; q++)
@@ -91,11 +88,12 @@ public class Elevator
 			}
 		}
 
-
+		//determines which are less than the pivot(floorFrom)
 		while(array[j] < pivot)
 			j++;
 		pivotIndex = j--;
-
+		
+		//swaps the lower floors highest to lowest
 		while(j != x && x < j)
 		{
 			temp = array[x];
@@ -104,7 +102,8 @@ public class Elevator
 			x++;
 			j--;
 		}
-
+		
+		//if up first, shifts all the lower amount to the end of the array
 		if(upOrDown)
 		{
 			x = 0;
@@ -123,5 +122,12 @@ public class Elevator
 			}
 		}
 	return array;
+	}
+	
+	public int floorAt(int i) //for the print elevators method
+	{
+		if(i != getFloor())
+			i = 0;
+		return i;
 	}
 }
