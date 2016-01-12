@@ -11,12 +11,18 @@ public class Elevator
 	public void goUp()
 	{
 		//wait one
+		try{
+			Thread.sleep(100);
+		}catch(InterruptedException e){}
 		currentFloor.push(currentFloor.peek()+1);
 	}
 
 	public void goDown()
 	{
 		//wait one
+		try{
+			Thread.sleep(100);
+		}catch(InterruptedException e){}
 		currentFloor.pop();
 	}
 
@@ -33,6 +39,9 @@ public class Elevator
 		}
 		//wait five
 		System.out.println("\nThe elevator has arrived at " + getFloor());
+		try{
+			Thread.sleep(500);
+		}catch(InterruptedException e){}
 	}
 
 	public void floorCall(int [] floorsCalled)
@@ -89,7 +98,7 @@ public class Elevator
 		}
 
 		//determines which are less than the pivot(floorFrom)
-		while(array[j] < pivot)
+		while(array[j] < pivot && j < array.length)
 			j++;
 		pivotIndex = j--;
 		
